@@ -88,25 +88,25 @@ end
     d = Segment(im,2im)
 
     fpstieltjesmatrix!(C, space(f), d)
-    c = Fun(d, chebyshevtransform(C*coefficients(f); kind=2))
+    c = Fun(d, chebyshevtransform(C*coefficients(f), Val(2)))
     @test c(1.5im) ≈ stieltjes(f,1.5im)
 
     d = Segment(-1,-1+im)
     fpstieltjesmatrix!(C, space(f), d)
     @test norm(C) ≤ 100
-    c = Fun(d, chebyshevtransform(C*coefficients(f); kind=2))
+    c = Fun(d, chebyshevtransform(C*coefficients(f), Val(2)))
     @test c(-1+0.5im) ≈ stieltjes(f,-1+0.5im)
 
     d = Segment(1,1+im)
     fpstieltjesmatrix!(C, space(f), d)
     @test norm(C) ≤ 200
-    c = Fun(d, chebyshevtransform(C*coefficients(f); kind=2))
+    c = Fun(d, chebyshevtransform(C*coefficients(f), Val(2)))
     @test c(1+0.5im) ≈ stieltjes(f,1+0.5im)
 
     d = ChebyshevInterval()
     fpstieltjesmatrix!(C, space(f), d)
     @test norm(C) ≤ 200
-    c = Fun(d, chebyshevtransform(C*coefficients(f); kind=2))
+    c = Fun(d, chebyshevtransform(C*coefficients(f), Val(2)))
     @test c(0.5) ≈ stieltjes(f,0.5⁻)
 
 
@@ -114,7 +114,7 @@ end
     f = Fun(x->exp(-200(x-0.6)^2), Legendre(d))
     C = fpstieltjesmatrix(space(f), ncoefficients(f), ncoefficients(f))
     @test norm(C) ≤ 200
-    c = Fun(d, chebyshevtransform(C*coefficients(f); kind=2))
+    c = Fun(d, chebyshevtransform(C*coefficients(f), Val(2)))
     @test c(0.5) ≈ stieltjes(f,0.5⁻)
 end
 
@@ -148,13 +148,13 @@ end
         h = 0.00000001; @test stieltjes(v[2],h*im) ≈ stieltjes(v[2],RiemannDual(0.0,im))(h) atol=1E-6
         @test finitepart(stieltjes(v[2],Directed{false}(RiemannDual(0.0,1)))) ≈ c_vals22[end]
 
-        C12 = fpstieltjesmatrix(space(v[2]), domain(v[1]), ncoefficients(v[1]), ncoefficients(v[2]))        
+        C12 = fpstieltjesmatrix(space(v[2]), domain(v[1]), ncoefficients(v[1]), ncoefficients(v[2]))
         c_vals12 = C12*v[2].coefficients
         h = 0.00000001; @test stieltjes(v[2],-h) ≈ stieltjes(v[2],RiemannDual(0.0,-1))(h) atol=1E-6
         @test finitepart(stieltjes(v[2],RiemannDual(0.0,-1))) ≈ c_vals12[1]
 
         C = fpstieltjesmatrix(space(f), ns, ns)
-        @test norm(C) ≤ 200
+        @test norm(C) ≤ 200
 
         @test C[1:ns[1],1:2:end] == C11
 
@@ -188,7 +188,7 @@ end
         @test c_vals[1] ≈ stieltjes(f, -0.0000000001im)
         @test c_vals[end] ≈ stieltjes(f, -0.0000000001im)
 
-        @test finitepart(stieltjes(f, RiemannDual(0.0,-im))) ≈ 
+        @test finitepart(stieltjes(f, RiemannDual(0.0,-im))) ≈
             finitepart(stieltjes(v[1], RiemannDual(0.0,-im))+stieltjes(v[2], RiemannDual(0.0,-im)))
 
 
@@ -348,7 +348,7 @@ end
 
         @test L == rhmatrix(g,n)
 
-        
+
         φ = z -> 1 + cauchy(u,z)
         @test φ(0.1⁺)  ≈ g(0.1)φ(0.1⁻)
 
@@ -725,7 +725,7 @@ end
         V = Fun(V4, sp)
 
         @test stieltjes(V,1+im)+I ≈ Φ(1+im)
-        
+
         U = V*(-2π*im)
 
         U1 = U[1,:]
@@ -739,7 +739,7 @@ end
         C₋ = fpcauchymatrix(space(U11), n, n)
         pts = collocationpoints(space(U11), n)
         c = C₋*coefficients(U11)
-        
+
         @test c[1] ≈ finitepart(cauchy(U11,orientedrightendpoint(component(Γ,1))))
         @test c[2] ≈ cauchy(U11,pts[2])
         @test c[150] ≈ finitepart(cauchy(U11,orientedleftendpoint(component(Γ,1))⁻))

@@ -149,7 +149,12 @@ orientedrightendpoint(d::IntervalOrSegment) = RiemannDual(rightendpoint(d), -sig
 
 
 # use 2nd kind to include endpoints
-collocationpoints(d::IntervalOrSegmentDomain, m::Int) = points(d, m; kind=2)
+
+function collocationpoints(d::IntervalOrSegmentDomain{T}, m::Int) where T
+   return fromcanonical.(Ref(d), chebyshevpoints(float(real(eltype(T))), m, Val(2)))
+end
+
+
 collocationpoints(d::UnionDomain, ms::AbstractVector{Int}) = vcat(collocationpoints.(pieces(d), ms)...)
 collocationpoints(d::UnionDomain, m::Int) = collocationpoints(d, pieces_npoints(d,m))
 
@@ -157,7 +162,7 @@ collocationpoints(sp::Space, m) = collocationpoints(domain(sp), m)
 
 
 collocationvalues(f::ScalarFun, n) = f.(collocationpoints(space(f), n))
-collocationvalues(f::Fun{<:Chebyshev}, n) = ichebyshevtransform!(coefficients(pad(f,n)); kind=2)
+collocationvalues(f::Fun{<:Chebyshev}, n) = ichebyshevtransform!(coefficients(pad(f,n)), Val(2))
 function collocationvalues(f::VectorFun, n)
     m = n÷size(f,1)
     mapreduce(f̃ -> collocationvalues(f̃,m), vcat, f)
@@ -470,7 +475,7 @@ function productcondition(G, z₀)
 
     g₀ = Matrix{ComplexF64}(I, size(G))
     for g in Gs[p]
-        if leftendpoint(domain(g)) ≈ z₀ 
+        if leftendpoint(domain(g)) ≈ z₀
             g₀ = g₀ * first(g)
         else
             g₀ = g₀ * inv(last(g))
