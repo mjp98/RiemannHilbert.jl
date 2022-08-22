@@ -20,7 +20,7 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 [compat]
 julia = "1.7, 1.8"
 ApproxFun = "0.13"
-ApproxFunBase = "0.5"
+ApproxFunBase = "0.6"
 FastTransforms = "0.14"
 SingularIntegralEquations = "0.7"
 SpecialFunctions = "2.0"
