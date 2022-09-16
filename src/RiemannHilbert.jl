@@ -127,7 +127,7 @@ component_indices(sp::Space, k...) = component_indices(interlacer(sp), k...)
 #     C
 # end
 #
-# function stieltjesmatrix(space,pts::Vector)
+# function stieltjesmatrix(sp,pts::Vector)
 #     n=length(pts)
 #     C=zeros(ComplexF64,n,n)
 #     for k=1:n
@@ -179,12 +179,15 @@ end
 collocationvalues(f::Fun{<:PiecewiseSpace}, n) = vcat(collocationvalues.(components(f), pieces_npoints(domain(f),n))...)
 
 function evaluationmatrix!(E, sp::PolynomialSpace, x)
+
+    T = prectype(sp)
+
     x .= real(tocanonical.(Ref(sp), x))
 
     E[:,1] .= 1
-    E[:,2] .= (recA(Float64,sp,0) .* x .+ recB(Float64,sp,0)) .* view(E,:,1)
+    E[:,2] .= (recA(T,sp,0) .* x .+ recB(T,sp,0)) .* view(E,:,1)
     for j = 3:size(E,2)
-        E[:,j] .= (recA(Float64,sp,j-2) .* x .+ recB(Float64,sp,j-2)) .* view(E,:,j-1) .- recC(Float64,sp,j-2).*view(E,:,j-2)
+        E[:,j] .= (recA(T,sp,j-2) .* x .+ recB(T,sp,j-2)) .* view(E,:,j-1) .- recC(T,sp,j-2).*view(E,:,j-2)
     end
     E
 end
@@ -194,7 +197,7 @@ evaluationmatrix!(E, sp::PolynomialSpace) =
     evaluationmatrix!(E, sp, collocationpoints(sp, size(E,1)))
 
 evaluationmatrix(sp::PolynomialSpace, x, n) =
-    evaluationmatrix!(Array{Float64}(undef, length(x), n), sp,copy(x))
+    evaluationmatrix!(Array{prectype(sp)}(undef, length(x), n), sp,copy(x))
 
 
 function evaluationmatrix!(C, sp::PiecewiseSpace, ns::AbstractVector{Int}, ms::AbstractVector{Int})
@@ -242,7 +245,7 @@ evaluationmatrix!(C, sp::ArraySpace) =
     evaluationmatrix!(C, sp, components_npoints(sp, size(C,1)), components_npoints(sp, size(C,2)))
 
 
-evaluationmatrix(sp::Space, n::Int) = evaluationmatrix!(Array{Float64}(undef,n,n), sp)
+evaluationmatrix(sp::Space, n::Int) = evaluationmatrix!(Array{prectype(sp)}(undef,n,n), sp)
 
 fprightstieltjesmoment!(V, sp) = stieltjesmoment!(V, sp, Directed{false}(orientedrightendpoint(domain(sp))), finitepart)
 fpleftstieltjesmoment!(V, sp) = stieltjesmoment!(V, sp, Directed{false}(orientedleftendpoint(domain(sp))), finitepart)
@@ -285,10 +288,10 @@ end
 fpstieltjesmatrix!(C, sp) = fpstieltjesmatrix!(C, sp, domain(sp))
 
 fpstieltjesmatrix(sp::Space, d::Domain, n::Int, m::Int) =
-    fpstieltjesmatrix!(Array{ComplexF64}(undef, n, m), sp, d)
+    fpstieltjesmatrix!(Array{complex(prectype(sp))}(undef, n, m), sp, d)
 
 fpstieltjesmatrix(sp::Space, n::Int, m::Int) =
-    fpstieltjesmatrix!(Array{ComplexF64}(undef, n, m), sp, domain(sp))
+    fpstieltjesmatrix!(Array{complex(prectype(sp))}(undef, n, m), sp, domain(sp))
 
 
 # we group points together by piece
@@ -314,7 +317,7 @@ end
 
 
 fpstieltjesmatrix(sp::PiecewiseSpace, ns::AbstractVector{Int}, ms::AbstractVector{Int}) =
-    fpstieltjesmatrix!(Array{ComplexF64}(undef, sum(ns), sum(ms)), sp, ns, ms)
+    fpstieltjesmatrix!(Array{complex(prectype(sp))}(undef, sum(ns), sum(ms)), sp, ns, ms)
 
 fpstieltjesmatrix!(C, sp::PiecewiseSpace) = fpstieltjesmatrix!(C, sp, pieces_npoints(sp, size(C,1)), pieces_npoints(sp, size(C,2)))
 fpstieltjesmatrix(sp::PiecewiseSpace, n::Int, m::Int) = fpstieltjesmatrix(sp, pieces_npoints(sp, n), pieces_npoints(sp, m))
@@ -326,7 +329,7 @@ function fpstieltjesmatrix(sp::ArraySpace, ns::AbstractArray{Int}, ms::AbstractA
     N = length(ns)
 
     n, m = sum(ns), sum(ms)
-    C = zeros(ComplexF64, n, m)
+    C = zeros(complex(prectype(sp)), n, m)
 
     for J = 1:N
         jr = component_indices(sp, J, 1:ms[J]) ∩ (1:m)
@@ -456,7 +459,7 @@ end
 include("KdV.jl")
 
 function unorientedangles(ds, z₀)
-    ret = Vector{Float64}()
+    ret = Vector{prectype(ds)}()
     for d in ds
         if z₀ ≈ leftendpoint(d)
             push!(ret, angle(rightendpoint(d)-z₀))
@@ -473,7 +476,7 @@ function productcondition(G, z₀)
     Gs = filter(g -> z₀ ∈ domain(g),  pieces(G))
     p =  sortperm( unorientedangles(domain.(Gs), z₀))
 
-    g₀ = Matrix{ComplexF64}(I, size(G))
+    g₀ = Matrix{complex(prectype(space(G)))}(I, size(G))
     for g in Gs[p]
         if leftendpoint(domain(g)) ≈ z₀
             g₀ = g₀ * first(g)

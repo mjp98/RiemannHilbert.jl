@@ -1,10 +1,15 @@
 
 
 # represents s*log(ε) + c as ε -> 0
-struct LogNumber <: Number
-    s::ComplexF64
-    c::ComplexF64
+struct LogNumber{T<:Complex{<:AbstractFloat}} <: Number
+    s::T
+    c::T
+    function LogNumber(s,c)
+        args = promote(s, c, zero(ComplexF64))
+        return new{eltype(args)}(args[1],args[2])
+    end
 end
+
 
 
 @inline logpart(z::Number) = zero(z)
@@ -45,9 +50,9 @@ for Typ in (:Bool, :Number)
 end
 /(l::LogNumber, b::Number) = LogNumber(l.s/b, l.c/b)
 
-function exp(l::LogNumber)::ComplexF64
+function exp(l::LogNumber{T})::T where T
     if real(l.s) > 0
-        0.0+0.0im
+        zero(T)
     elseif real(l.s) < 0
         Inf+Inf*im
     elseif real(l.s) == 0 && imag(l.s) == 0
