@@ -2,7 +2,7 @@
 
 julia_version = "1.8.0"
 manifest_format = "2.0"
-project_hash = "9594050efeffead8cb769c088f86eeeeafcad5a6"
+project_hash = "c5befb441e2d3a2cd01738b576593166861f9e77"
 
 [[deps.AbstractFFTs]]
 deps = ["ChainRulesCore", "LinearAlgebra"]
@@ -12,33 +12,33 @@ version = "1.2.1"
 
 [[deps.ApproxFun]]
 deps = ["AbstractFFTs", "ApproxFunBase", "ApproxFunFourier", "ApproxFunOrthogonalPolynomials", "ApproxFunSingularities", "Calculus", "DomainSets", "DualNumbers", "FFTW", "FastTransforms", "LinearAlgebra", "RecipesBase", "Reexport", "SpecialFunctions"]
-git-tree-sha1 = "979c7838b3de22859236c8411536749ac8e10143"
+git-tree-sha1 = "53dc9dc70f7853a132dabd963bdd3834878dc331"
 uuid = "28f2ccd6-bb30-5033-b560-165f7b14dc2f"
-version = "0.13.5"
+version = "0.13.9"
 
 [[deps.ApproxFunBase]]
 deps = ["AbstractFFTs", "BandedMatrices", "BlockArrays", "BlockBandedMatrices", "Calculus", "DSP", "DomainSets", "DualNumbers", "FFTW", "FastGaussQuadrature", "FillArrays", "InfiniteArrays", "InfiniteLinearAlgebra", "IntervalSets", "LazyArrays", "LinearAlgebra", "LowRankApprox", "SparseArrays", "SpecialFunctions", "StaticArrays", "Statistics", "Test", "ToeplitzMatrices"]
-git-tree-sha1 = "2a1ac9994b3ee442e5e38f2cd0009578b710df49"
+git-tree-sha1 = "1ddc46c2e788daac6ae78c9bec63068fae5a42a9"
 uuid = "fbd15aa5-315a-5a7d-a8a4-24992e37be05"
-version = "0.5.17"
+version = "0.6.21"
 
 [[deps.ApproxFunFourier]]
 deps = ["AbstractFFTs", "ApproxFunBase", "DomainSets", "FFTW", "FastTransforms", "InfiniteArrays", "IntervalSets", "LinearAlgebra", "Reexport"]
-git-tree-sha1 = "3209c243eff4ced9d4b422512d23d0a22b2b4cdd"
+git-tree-sha1 = "575d0c1f6c27904eb5a411ed64bbbe10c023f746"
 uuid = "59844689-9c9d-51bf-9583-5b794ec66d30"
-version = "0.2.15"
+version = "0.3.2"
 
 [[deps.ApproxFunOrthogonalPolynomials]]
 deps = ["AbstractFFTs", "ApproxFunBase", "BandedMatrices", "BlockArrays", "BlockBandedMatrices", "DomainSets", "FFTW", "FastGaussQuadrature", "FastTransforms", "FillArrays", "IntervalSets", "LinearAlgebra", "Reexport", "SpecialFunctions", "Statistics"]
-git-tree-sha1 = "ce6d7e40cf44f9c44df907081c9ca77f0cf2619b"
+git-tree-sha1 = "0f113b3d3326c729fd3e9397f3351fdcd6d2c1f8"
 uuid = "b70543e2-c0d9-56b8-a290-0d4d6d4de211"
-version = "0.4.17"
+version = "0.5.4"
 
 [[deps.ApproxFunSingularities]]
 deps = ["ApproxFunBase", "ApproxFunOrthogonalPolynomials", "DomainSets", "IntervalSets", "LinearAlgebra", "Reexport", "Statistics"]
-git-tree-sha1 = "77831f1f073aeebc7ea56bace5e3e02e07828e23"
+git-tree-sha1 = "b3af04ebc9d8e7eca7e63d268f0e58e3b91670f5"
 uuid = "f8fcb915-6b99-5be2-b79a-d6dbef8e6e7e"
-version = "0.2.5"
+version = "0.3.1"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -55,9 +55,9 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 
 [[deps.BandedMatrices]]
 deps = ["ArrayLayouts", "FillArrays", "LinearAlgebra", "Random", "SparseArrays"]
-git-tree-sha1 = "d8da9afb97ad4a1a06650db11c8b72d9dd2f1ace"
+git-tree-sha1 = "2495db5e036dd9f16538250cf3e51bc82d0326db"
 uuid = "aae01518-5342-5314-be14-df237901396f"
-version = "0.17.5"
+version = "0.17.6"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -82,9 +82,9 @@ version = "0.5.1"
 
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "80ca332f6dcb2508adba68f22f551adb2d00a624"
+git-tree-sha1 = "dc4405cee4b2fe9e1108caec2d760b7ea758eca2"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.15.3"
+version = "1.15.5"
 
 [[deps.ChangesOfVariables]]
 deps = ["ChainRulesCore", "LinearAlgebra", "Test"]
@@ -110,9 +110,9 @@ version = "0.1.2"
 
 [[deps.DSP]]
 deps = ["Compat", "FFTW", "IterTools", "LinearAlgebra", "Polynomials", "Random", "Reexport", "SpecialFunctions", "Statistics"]
-git-tree-sha1 = "3fb5d9183b38fdee997151f723da42fb83d1c6f2"
+git-tree-sha1 = "4ba2a190a9d05a36e8c26182eb1ba06cd12c1051"
 uuid = "717857b8-e6f2-59f4-9121-6e50c889abd2"
-version = "0.7.6"
+version = "0.7.7"
 
 [[deps.DataAPI]]
 git-tree-sha1 = "fb5f5316dd3fd4c5e7c30a24d50643b73e37cd40"
@@ -136,10 +136,10 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.9.1"
 
 [[deps.DomainSets]]
-deps = ["CompositeTypes", "IntervalSets", "LinearAlgebra", "StaticArrays", "Statistics"]
-git-tree-sha1 = "b909ae024533935c809fb946b7f26e7eef5d1106"
+deps = ["CompositeTypes", "IntervalSets", "LinearAlgebra", "Random", "StaticArrays", "Statistics"]
+git-tree-sha1 = "dc45fbbe91d6d17a8e187abad39fb45963d97388"
 uuid = "5b8099bc-c8ec-5219-889f-1d9e522a28bf"
-version = "0.5.12"
+version = "0.5.13"
 
 [[deps.Downloads]]
 deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
@@ -171,10 +171,10 @@ uuid = "442a2c76-b920-505d-bb47-c5924d526838"
 version = "0.4.9"
 
 [[deps.FastTransforms]]
-deps = ["AbstractFFTs", "DSP", "FFTW", "FastGaussQuadrature", "FastTransforms_jll", "FillArrays", "GenericFFT", "Libdl", "LinearAlgebra", "Reexport", "SpecialFunctions", "Test", "ToeplitzMatrices"]
-git-tree-sha1 = "ac28ea3c746fc91b1fae9186795413283ad3215f"
+deps = ["AbstractFFTs", "FFTW", "FastGaussQuadrature", "FastTransforms_jll", "FillArrays", "GenericFFT", "Libdl", "LinearAlgebra", "Reexport", "SpecialFunctions", "Test", "ToeplitzMatrices"]
+git-tree-sha1 = "20e5e0c59b47358e22fbcd77d1a0bcd0aba7680d"
 uuid = "057dd010-8810-581a-b7be-e3fc3b93f78c"
-version = "0.14.4"
+version = "0.14.5"
 
 [[deps.FastTransforms_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "FFTW_jll", "JLLWrappers", "LLVMOpenMP_jll", "Libdl", "MPFR_jll", "OpenBLAS_jll", "Pkg"]
@@ -187,9 +187,9 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.FillArrays]]
 deps = ["LinearAlgebra", "Random", "SparseArrays", "Statistics"]
-git-tree-sha1 = "246621d23d1f43e3b9c368bf3b72b2331a27c286"
+git-tree-sha1 = "87519eb762f85534445f5cda35be12e32759ee14"
 uuid = "1a297f60-69ca-5386-bcde-b61e274b549b"
-version = "0.13.2"
+version = "0.13.4"
 
 [[deps.GMP_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -313,9 +313,9 @@ uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [[deps.LogExpFunctions]]
 deps = ["ChainRulesCore", "ChangesOfVariables", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
-git-tree-sha1 = "361c2b088575b07946508f135ac556751240091c"
+git-tree-sha1 = "94d9c52ca447e23eac0c0f074effbcd38830deb5"
 uuid = "2ab3a3ac-af41-5b50-aa03-7779005ae688"
-version = "0.3.17"
+version = "0.3.18"
 
 [[deps.Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
@@ -328,9 +328,9 @@ version = "0.5.2"
 
 [[deps.MKL_jll]]
 deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
-git-tree-sha1 = "e595b205efd49508358f7dc670a940c790204629"
+git-tree-sha1 = "41d162ae9c868218b1f3fe78cba878aa348c2d26"
 uuid = "856f044c-d86e-5d09-b602-aeab76dc8ba7"
-version = "2022.0.0+0"
+version = "2022.1.0+0"
 
 [[deps.MPFR_jll]]
 deps = ["Artifacts", "GMP_jll", "Libdl"]
@@ -458,9 +458,11 @@ uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 
 [[deps.SingularIntegralEquations]]
 deps = ["ApproxFun", "ApproxFunBase", "ApproxFunFourier", "ApproxFunOrthogonalPolynomials", "ApproxFunSingularities", "BandedMatrices", "DomainSets", "DualNumbers", "HypergeometricFunctions", "LinearAlgebra", "LowRankApprox", "SpecialFunctions", "Test"]
-git-tree-sha1 = "8986ed30e0644a4725fa90507ef10e38a1b0fa11"
+git-tree-sha1 = "db131bdf7c6fcf458b375d4d2c6822712888dceb"
+repo-rev = "patch-1"
+repo-url = "https://github.com/jishnub/SingularIntegralEquations.jl"
 uuid = "e094c991-5a90-5477-8896-c1e4c9552a1a"
-version = "0.7.0"
+version = "0.7.1"
 
 [[deps.Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
@@ -483,14 +485,14 @@ version = "2.1.7"
 
 [[deps.StaticArrays]]
 deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
-git-tree-sha1 = "85bc4b051546db130aeb1e8a696f1da6d4497200"
+git-tree-sha1 = "efa8acd030667776248eabb054b1836ac81d92f0"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "1.5.5"
+version = "1.5.7"
 
 [[deps.StaticArraysCore]]
-git-tree-sha1 = "5b413a57dd3cea38497d745ce088ac8592fbb5be"
+git-tree-sha1 = "ec2bd695e905a3c755b33026954b119ea17f2d22"
 uuid = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
-version = "1.1.0"
+version = "1.3.0"
 
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
@@ -523,10 +525,10 @@ deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[deps.ToeplitzMatrices]]
-deps = ["AbstractFFTs", "LinearAlgebra", "StatsBase"]
-git-tree-sha1 = "b61dc0269afe4c4e6109cee4d4098121bf59a8d0"
+deps = ["AbstractFFTs", "DSP", "LinearAlgebra", "StatsBase"]
+git-tree-sha1 = "66ac18e4232016bed257ac7f15c13a765f18aa39"
 uuid = "c751599d-da0a-543b-9d20-d0a503d91d24"
-version = "0.7.0"
+version = "0.7.1"
 
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
